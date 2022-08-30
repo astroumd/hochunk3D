@@ -36,13 +36,16 @@ contains
        do
           read(10,'(A1000)',iostat=ioerr) line
           if(ioerr.ne.0) exit
-          pos1 = index(line,'=')
-          pos2 = index(line(pos1+1:),'=') + pos1
-          if(pos1.gt.0.and.pos2.gt.0) then
-             i = i + 1
-             if(iter==2) then
-                values(i) = trim(line(1:pos1-1))
-                names(i) = trim(adjustl(line(pos1+1:pos2-1)))
+          !PJT   allow #-commented lines
+          if (line(1:1) .ne. '#') then
+             pos1 = index(line,'=')
+             pos2 = index(line(pos1+1:),'=') + pos1
+             if(pos1.gt.0.and.pos2.gt.0) then
+                i = i + 1
+                if(iter==2) then
+                   values(i) = trim(line(1:pos1-1))
+                   names(i) = trim(adjustl(line(pos1+1:pos2-1)))
+                end if
              end if
           end if
        end do
