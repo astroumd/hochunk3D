@@ -25,10 +25,11 @@ For example:
      cd src
      ./configure FC=gfortran --enable-fits --with-cfitsio=/usr/lib/x86_64-linux-gnu
      make
-     cd ../models/modcII_quick
-     ../src/ttsre
+     make bench
 
 on a standard Ubuntu linux. The actual *cfitsio* directory can vary on your system. Look
 for **libcfitsio.a** on your system.
+
+The benchmark takes about 4-8 mins on a typical 2022 type CPU.
 
 
