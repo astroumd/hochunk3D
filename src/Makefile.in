@@ -1,6 +1,7 @@
 FC = @FC@ @extra_serial@
 CFITSIO = @CFITSIO_libdir@
 LDFLAGS = $(CFITSIO)
+TIME = /usr/bin/time
 
 .SUFFIXES:
 .SUFFIXES: .o .f .f90 .F90
@@ -123,3 +124,6 @@ tarfile:;	tar cvf ttsre.tar *.f90 *.F90 mctherm.par Make*
 
 clean:;		/bin/rm -f *.o */*.o */*.mod *genmod.f90 *.mod
 
+
+bench:
+	(cd ../models/modcII_quick; /usr/bin/time ../../src/ttsre)
