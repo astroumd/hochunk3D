@@ -97,7 +97,9 @@ OBJSB	=	constants.o \
 		tfinal.o \
 		thetaface.o \
 		wrimsg.o \
-		zerod.o 
+		zerod.o
+
+all:    ttsre
 
 ttsre:		$(OBJSB)
 		$(FC) $(OBJSB) $(LDFLAGS) -o @ttsre@
