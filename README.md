@@ -35,20 +35,9 @@ The benchmark takes about 4-8 mins on a typical 2022 type CPU.
 
 ## Running
 
-In the UMD branch we (will) have a wrapper that enable running the
-code a little easier, while creating run directories for a new set of
-parameters.
-
-The wrapper needs to do:
-     - start with a clean "hochunk3d/results"
-     - commands:
-            cd results
-	    ln -s ../models/modcII_quick/mctherm.par
-      	    ln -s ../models/parfiles
-     - create a rundirectory with a new mctherm.par file (or use NEMO's pedit)
-            mkdir run123
-	    cp mcterm.par run123
-	    cd run123
-	    /usr/bin/time ../../src/ttsre > bench.log 2>&1
-     - note that the PARDIR is always ../parfiles, because it assumes we're running
-       from inside models, and we use symlinks to pretend we are. This way
+In the UMD branch we have a wrapper in the running/ subdirectory that
+enables running the code a little easier while surveying a large
+number of models (e.g. looping over some parameters).  Is does this by
+creating run directories for each set of parameters. Some examples
+exist how to create the runfiles, as well how to efficiently farm them
+out to different machines, either private or HPC cluster.
