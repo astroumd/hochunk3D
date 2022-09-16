@@ -1,0 +1,5 @@
+echo "Run this file with 'parallel -j 4 < survey2.run'"
+run_hochunk3d run1 PAR1=1.0 PAR2=2.0 PAR3=3.0
+run_hochunk3d run2 PAR1=2.0 PAR2=1.0 PAR3=3.0
+run_hochunk3d run3 PAR1=1.5 PAR2=1.5 PAR3=2.0
+run_hochunk3d run4 PAR1=1.5 PAR2=1.5 PAR3=4.0
