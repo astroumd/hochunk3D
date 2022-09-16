@@ -1,0 +1,34 @@
+#! /bin/bash
+#
+#   arg1  = rundir
+#   arg2+ = arguments to replace the template mcterm.par
+#
+#   Template parameter file 'mcterm.par' needs to exist here (or a symlink to the one in models/*)
+#   Link to 'parfiles' needs to exists here
+
+if [ $# -lt 2 ]; then
+    echo "Usage: $0 <RUNDIR> PAR1=VAL1 PAR2=VAL2 ..."
+    echo "PAR's need to be valid parameter names from the mctherm.par file"
+    exit 0
+fi
+
+par=mctherm.par
+rundir=$1
+shift
+
+if [ -d $rundir ]; then
+    echo $rundir exists, skipping work
+    exit 0
+fi
+
+if [ ! -e $par ]; then
+    echo "template $par does not exist here in $(pwd)"
+    exit 0
+fi
+
+echo CMD: run_hochunk3d $rundir $*
+mkdir $rundir
+cd $rundir
+pedit ../$par -r -e $* > $par
+/usr/bin/time ../../src/ttsre > run.log 2>&1 
+

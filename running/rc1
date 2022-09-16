@@ -1,0 +1,2 @@
+# source this here
+export PATH=$(pwd):$PATH
