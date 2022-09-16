@@ -24,11 +24,10 @@ For example:
 
      cd src
      ./configure FC=gfortran --enable-fits --with-cfitsio=/usr/lib/x86_64-linux-gnu
-     make
-     make bench
+     make clean all bench
 
 on a standard Ubuntu linux. The actual *cfitsio* directory can vary on your system. Look
-for **libcfitsio.a** on your system.
+for **libcfitsio.a** on your system. For example, at UMD this would be /local/lib64
 
 The benchmark takes about 4-8 mins on a typical 2022 type CPU.
 
