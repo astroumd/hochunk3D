@@ -1,7 +1,7 @@
 # hochunk3D: 3-D Radiation Transfer Codes
 
 This code was imported from https://gemelli.colorado.edu/~bwhitney/codes/
-(without the SVN history). The initial import included the patched output.F90 file.
+(without the SVN history). The initial import included a patched **output.F90** file.
 
 ## Branches
 
@@ -12,14 +12,14 @@ Please check which branches exist, in case they will benefit you
 * UMD : The UMD branch contains a number of  improvements, and it's easiest to grab
 this code using
 
-     git clone -b UMD https://github.com/astroumd/hochunk3d
+        git clone -b UMD https://github.com/astroumd/hochunk3d
 
 * test : TBD
 
 
 ## Installation
 
-Follow guidelines in instructions.txt there to configure, compile and run.
+Follow guidelines in **instructions.txt** there to configure, compile and run.
 For example:
 
      cd src
@@ -27,10 +27,11 @@ For example:
      make clean all bench
 
 on a standard Ubuntu linux. The actual *cfitsio* directory can vary on your system. Look
-for **libcfitsio.a** on your system. For example, at UMD this would be /local/lib64
+for **libcfitsio.a** on your system. For example, at UMD this would be /local/lib64; on
+a standard RedHat it would be /usr/lib.
 
 The benchmark takes about 4-8 mins on a typical 2022 type CPU, though in the running/
-directory a much faster benchmark for testing is given.
+directory a recipe for a much faster benchmark for testing is given.
 
 
 ## Running
