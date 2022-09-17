@@ -1,10 +1,10 @@
 #! /bin/bash
 #
-#   arg1  = rundir
+#   arg1  = rundir to be created. if already exist, no work is done. Needs to be a simple name, no / allowed
 #   arg2+ = arguments to replace the template mcterm.par
 #
-#   Template parameter file 'mcterm.par' needs to exist here (or a symlink to the one in models/*)
-#   Link to 'parfiles' needs to exists here
+#   Template parameter file 'mcterm.par' needs to exist here (or a symlink to one in models/*/mcterm.par)
+#   Link to 'parfiles' needs to exists here as wel
 
 if [ $# -lt 2 ]; then
     echo "Usage: $0 <RUNDIR> PAR1=VAL1 PAR2=VAL2 ..."
@@ -12,6 +12,8 @@ if [ $# -lt 2 ]; then
     exit 0
 fi
 
+run=../../src/ttsre
+time=/usr/bin/time
 par=mctherm.par
 rundir=$1
 shift
@@ -26,9 +28,15 @@ if [ ! -e $par ]; then
     exit 0
 fi
 
-echo CMD: run_hochunk3d $rundir $*
+if [ ! -e parfiles ]; then
+    echo "Warning: parfiles does not exist."
+    exit 0
+fi
+
+
+echo run_hochunk3d $rundir $*
 mkdir $rundir
 cd $rundir
 pedit ../$par -r -e $* > $par
-/usr/bin/time ../../src/ttsre > run.log 2>&1 
+$time $run > run.log 2>&1 
 

@@ -8,10 +8,15 @@ For example, to recreate a really fast benchmark (faster than the
 quick one), do this in this directory:
 
        # first ensure the running/ directory is in your $PATH
-       cd running
+       cd hochunk3d/running
        source rc1
 
-       # make symlinks to the template model
+       # create a root directory for a set of models, and move there
+       cd ..
+       mkdir run_bench
+       cd run_bench
+
+       # make symlinks to the template model you want to start from
        ln -s ../models/modcII_quick/mctherm.par
        ln -s ../models/parfiles
 
@@ -41,16 +46,18 @@ runfile (e.g. using NEMO's sbatch_nemo.sh script) as follows:
 
 An overview of your workflow:
 
-0.  Ensure **run_hochunk3d** (and **pedit**) is in your $PATH
+0.  Ensure **run_hochunk3d** (and **pedit**) is in your $PATH. 
 
-1.  Create a subdirectory off the **hochunk3d** directory, and change your directory there
+1.  Create a subdirectory off the **hochunk3d** directory, and change your directory there. Inside of this
+    directory you will have many run directories, each with their own **mctherm.par** and associated results.
 
-2.  create symlinks to **models/parfiles** and one of the selects **models/*/mctherm.par** file.
-    This will be the template parameter file.
+2.  In this directory, create symlinks to **../models/parfiles** and one of the selected **../models/*/mctherm.par** file.
+    This will be your template parameter file.
 
-3.  Create a (text) runfile with many lines showing a run_hochunk3d instantiation. This can often
-    be automated with a bash or python script.
+3.  Create a (text) runfile with many lines showing a run_hochunk3d instantiation, with a set of *parameter=value* command
+    line arguments. This can often
+    be automated with a bash or python script generator. We have some examples in the running directory.
 
-4.  Use **parallel** or **bash** to run the runfile. Each model will be in a separate run directory.
+4.  Use **parallel** or **bash** to run the runfile. Each model will be in a separate run directory, as discussed before.
 
 
